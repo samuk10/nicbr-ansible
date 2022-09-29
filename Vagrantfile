@@ -33,9 +33,9 @@ Vagrant.configure('2') do |config|
 
       k.vm.provision 'shell', inline: <<-SHELL
         mkdir -p /root/.ssh
-        cp /vagrant/provision/id_ed25519 /root/.ssh
+        cp /provision/id_ed25519 /root/.ssh
         chmod 400 /root/.ssh/id_ed25519*
-        cp /vagrant/provision/id_ed25519.pub /root/.ssh/authorized_keys
+        cp /provision/id_ed25519.pub /root/.ssh/authorized_keys
         sed -Ei 's,#PermitRootLogin prohibit-password,PermitRootLogin yes,' /etc/ssh/sshd_config
         sed -Ei 's,#?PasswordAuthentication .*,PasswordAuthentication yes,' /etc/ssh/sshd_config
         systemctl restart sshd
