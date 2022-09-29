@@ -10,20 +10,20 @@
       name: httpd
       state: started
       enabled: yes
-    when: ansible_os_family == 'RedHat'
+    when: ansible_os_family|lower == 'redhat'
   - name: Garante que o serviço do Apache esteja iniciado no openSUSE
     service:
       name: apache2
       state: started
       enabled: yes
-    when: ansible_os_family == 'Suse'
+    when: ansible_os_family|lower == 'suse'
   - name: Garante que o site esteja presente em Fedora
     copy:
       src: site/
       dest: /var/www/html/
-    when: ansible_os_family == 'RedHat'
+    when: ansible_os_family|lower == 'redhat'
   - name: Garante que o site esteja presente em openSUSE
     copy:
       src: site/
       dest: /srv/www/htdocs/
-    when: ansible_os_family == 'Suse'
+    when: ansible_os_family|lower == 'suse'
